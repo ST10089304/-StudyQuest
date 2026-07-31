@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<section class="dashboard-shell">
+  <div class="dashboard-heading"><div><p class="eyebrow">Task management</p><h1>My academic tasks</h1></div><a class="button" href="/tasks/new">Create task</a></div>
+  <section class="panel task-table-panel">
+    <% if (!tasks.length) { %><div class="empty-state"><h3>Your task list is empty</h3><p>Add an assignment, study session or project milestone.</p></div><% } %>
+    <% tasks.forEach(task => { %>
+      <article class="task-card <%= task.IsCompleted ? 'completed' : '' %>">
+        <div class="task-card-main"><span class="priority <%= task.Priority.toLowerCase() %>"><%= task.Priority %></span><div><h3><%= task.Title %></h3><p><%= task.Description || 'No description added.' %></p><small>Due <%= new Date(task.DueDate).toLocaleDateString('en-ZA') %></small></div></div>
+        <div class="task-actions">
+          <% if (!task.IsCompleted) { %><form action="/tasks/<%= task.TaskId %>/complete?_method=PATCH" method="post"><button class="button button-small" type="submit">Complete</button></form><a class="text-button" href="/tasks/<%= task.TaskId %>/edit">Edit</a><% } %>
+          <form action="/tasks/<%= task.TaskId %>?_method=DELETE" method="post" onsubmit="return confirm('Delete this task?')"><button class="text-button danger" type="submit">Delete</button></form>
+        </div>
+      </article>
+    <% }) %>
+  </section>
+</section>
+<%- include('../partials/footer') %>

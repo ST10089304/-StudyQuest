@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | StudyQuest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="/">STUDYQUEST</a>
+  <nav class="nav-links">
+    <% if (currentUser) { %>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/tasks">Tasks</a>
+      <a href="/profile">Achievements</a>
+      <form action="/logout" method="post"><button class="nav-button" type="submit">Log out</button></form>
+    <% } else { %>
+      <a href="/login">Log in</a>
+      <a class="button button-small" href="/register">Join now</a>
+    <% } %>
+  </nav>
+</header>
+<main>

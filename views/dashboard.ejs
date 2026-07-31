@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+<section class="dashboard-shell">
+  <div class="dashboard-heading"><div><p class="eyebrow">Student dashboard</p><h1>Welcome, <%= user.FullName.split(' ')[0] %>.</h1></div><a class="button" href="/tasks/new">Add new task</a></div>
+  <div class="stats-grid">
+    <article><span>Total tasks</span><strong><%= stats.TotalTasks || 0 %></strong></article>
+    <article><span>Completed</span><strong><%= stats.CompletedTasks || 0 %></strong></article>
+    <article><span>Open</span><strong><%= stats.OpenTasks || 0 %></strong></article>
+    <article class="pink-stat"><span>Quest points</span><strong><%= user.Points %></strong></article>
+  </div>
+  <div class="dashboard-grid">
+    <section class="panel"><div class="panel-heading"><h2>Upcoming tasks</h2><a href="/tasks">View all</a></div>
+      <% if (!tasks.length) { %><div class="empty-state"><h3>No tasks yet</h3><p>Create your first academic task to begin earning points.</p></div><% } %>
+      <% tasks.forEach(task => { %><div class="task-row"><span class="priority <%= task.Priority.toLowerCase() %>"><%= task.Priority %></span><div><strong><%= task.Title %></strong><small>Due <%= new Date(task.DueDate).toLocaleDateString('en-ZA') %></small></div><span><%= task.IsCompleted ? 'Completed' : 'Open' %></span></div><% }) %>
+    </section>
+    <section class="panel achievement-panel"><div class="panel-heading"><h2>Achievements</h2><a href="/profile">View profile</a></div>
+      <% if (!badges.length) { %><div class="empty-state"><h3>Your first badge is close</h3><p>Complete one task to unlock First Task Completed.</p></div><% } %>
+      <% badges.forEach(badge => { %><div class="achievement"><div class="badge-mark">SQ</div><div><strong><%= badge.Name %></strong><p><%= badge.Description %></p></div></div><% }) %>
+    </section>
+  </div>
+</section>
+<%- include('partials/footer') %>

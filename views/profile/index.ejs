@@ -1,0 +1,9 @@
+<%- include('../partials/header') %>
+<section class="dashboard-shell">
+  <div class="profile-hero"><div class="avatar"><%= user.FullName.split(' ').map(n => n[0]).slice(0,2).join('') %></div><div><p class="eyebrow">Student profile</p><h1><%= user.FullName %></h1><p><%= user.Email %></p></div><div class="points-block"><strong><%= user.Points %></strong><span>Quest points</span></div></div>
+  <div class="dashboard-grid">
+    <section class="panel"><h2>Progress summary</h2><div class="profile-stats"><div><strong><%= stats.CompletedTasks || 0 %></strong><span>Completed tasks</span></div><div><strong><%= stats.OpenTasks || 0 %></strong><span>Open tasks</span></div><div><strong><%= stats.OverdueTasks || 0 %></strong><span>Overdue</span></div></div></section>
+    <section class="panel"><h2>Achievement badges</h2><div class="badge-grid"><% badges.forEach(badge => { %><article class="badge-card <%= badge.Earned ? 'earned' : 'locked' %>"><div class="badge-mark">SQ</div><h3><%= badge.Name %></h3><p><%= badge.Description %></p><small><%= badge.Earned ? 'Unlocked' : 'Locked' %></small></article><% }) %></div></section>
+  </div>
+</section>
+<%- include('../partials/footer') %>

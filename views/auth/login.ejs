@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+<section class="auth-layout">
+  <div class="auth-intro"><p class="eyebrow">Welcome back</p><h1>Continue your academic quest.</h1><p>Log in to review deadlines, complete tasks and view your latest achievements.</p></div>
+  <form class="form-card" action="/login" method="post" novalidate>
+    <h2>Secure login</h2>
+    <% if (message) { %><div class="alert success"><p><%= message %></p></div><% } %>
+    <% if (errors.length) { %><div class="alert error"><% errors.forEach(error => { %><p><%= error.msg %></p><% }) %></div><% } %>
+    <label>Email address<input type="email" name="email" value="<%= values.email || '' %>" required></label>
+    <label>Password<input type="password" name="password" required></label>
+    <button class="button full-width" type="submit">Log in</button>
+    <p class="form-note">New to StudyQuest? <a href="/register">Create an account</a></p>
+  </form>
+</section>
+<%- include('../partials/footer') %>

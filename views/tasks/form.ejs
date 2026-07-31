@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+<section class="form-page">
+  <div><p class="eyebrow">Task editor</p><h1><%= title %></h1><p>Keep each task specific, prioritised and connected to a clear deadline.</p></div>
+  <form class="form-card wide" action="<%= action %>" method="post">
+    <% if (errors.length) { %><div class="alert error"><% errors.forEach(error => { %><p><%= error.msg %></p><% }) %></div><% } %>
+    <label>Task title<input type="text" name="title" value="<%= task.Title || task.title || '' %>" required maxlength="150"></label>
+    <label>Description<textarea name="description" rows="5" maxlength="1000"><%= task.Description || task.description || '' %></textarea></label>
+    <div class="form-grid">
+      <label>Priority<select name="priority" required><% ['Low','Medium','High'].forEach(p => { const selected = (task.Priority || task.priority) === p; %><option value="<%= p %>" <%= selected ? 'selected' : '' %>><%= p %></option><% }) %></select></label>
+      <label>Due date<input type="date" name="dueDate" value="<%= task.DueDate ? new Date(task.DueDate).toISOString().slice(0,10) : (task.dueDate || '') %>" required></label>
+    </div>
+    <button class="button full-width" type="submit"><%= submitLabel %></button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

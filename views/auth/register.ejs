@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+<section class="auth-layout">
+  <div class="auth-intro"><p class="eyebrow">New student</p><h1>Create your StudyQuest account.</h1><p>Build a task system that rewards consistency and makes progress visible.</p></div>
+  <form class="form-card" action="/register" method="post" novalidate>
+    <h2>Registration</h2>
+    <% if (errors.length) { %><div class="alert error"><% errors.forEach(error => { %><p><%= error.msg %></p><% }) %></div><% } %>
+    <label>Full name<input type="text" name="fullName" value="<%= values.fullName || '' %>" required maxlength="120"></label>
+    <label>Email address<input type="email" name="email" value="<%= values.email || '' %>" required></label>
+    <label>Password<input type="password" name="password" required minlength="8"><small>Use at least 8 characters, including uppercase, lowercase and a number.</small></label>
+    <label>Confirm password<input type="password" name="confirmPassword" required></label>
+    <button class="button full-width" type="submit">Create account</button>
+    <p class="form-note">Already registered? <a href="/login">Log in</a></p>
+  </form>
+</section>
+<%- include('../partials/footer') %>
