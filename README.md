@@ -87,11 +87,11 @@ Run these commands inside the project folder:
 ```powershell
 git init
 git branch -M main
-git config user.name "ST10089304"
-git config user.email "ST10089304@vcconnect.edu.za"
+git config user.name ""
+git config user.email ""
 git add .
 git commit -m "Create StudyQuest secure task management application"
-git remote add origin https://github.com/ST10089304/StudyQuest.git
+git remote add origin https://github.com/username/StudyQuest.git
 git push -u origin main
 ```
 
